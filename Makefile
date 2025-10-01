@@ -110,7 +110,7 @@ clean:
 
 
 
-upload:
+upload: $(OBJDIR)/$(PROJECT_NAME).hex
 	python $(MIK32_UPLOADER_DIR)/mik32_upload.py --run-openocd --openocd-exec=`which openocd` --openocd-scripts $(MIK32_UPLOADER_DIR)/openocd-scripts --openocd-interface interface/ftdi/mikron-link.cfg $(OBJDIR)/$(PROJECT_NAME).hex 
 
 
