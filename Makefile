@@ -97,16 +97,7 @@ $(OBJDIR)/%.o: %.S
 
 
 clean:
-	rm -rf $(OBJDIR)/src
-	rm -f $(OBJDIR)/$(PROJECT_NAME).elf
-	rm -f $(OBJDIR)/$(PROJECT_NAME).hex
-	rm -f $(OBJDIR)/$(PROJECT_NAME).hexx
-	rm -f $(OBJDIR)/$(PROJECT_NAME).map
-	rm -f $(OBJDIR)/$(PROJECT_NAME).bin
-	rm -f $(OBJDIR)/$(PROJECT_NAME).v
-	rm -f $(OBJDIR)/$(PROJECT_NAME).asm
-	find $(OBJDIR) -type f -name '*.o' -print0 | xargs -0 -r rm
-	find $(OBJDIR) -type f -name '*.d' -print0 | xargs -0 -r rm
+	rm -rf $(OBJDIR)
 
 
 
