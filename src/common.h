@@ -3,31 +3,31 @@
 
 #define	MODEM_RX_BUF_SIZE	128
 
-#define	PAD_CFG_PUPD(Port, Pin)		PORT_ ## Port ## _PUPD
-#define	PAD_CFG_MODE(Port, Pin)		PORT_ ## Port ## _CFG
+#define	PAD_CFG_PUPD(Port)		PORT_ ## Port ## _PUPD
+#define	PAD_CFG_MODE(Port)		PORT_ ## Port ## _CFG
 #define	PAD_GPIO(Port)			GPIO_ ## Port
 
 // Макро для установки режимов подтяжки оптимальным способом (генерирует короткий код)
 #define	PAD_PUPD(Port, Pin, UpDown) {\
-	uint32_t x = (PAD_CONFIG->PAD_CFG_PUPD(Port, Pin));\
-	x &= (0b11 << (2 * Pin));\
+	uint32_t x = (PAD_CONFIG->PAD_CFG_PUPD(Port));\
+	x &= ~(0b11 << (2 * Pin));\
 	x |= (UpDown << (2 * Pin));\
-	(PAD_CONFIG->PAD_CFG_PUPD(Port, Pin)) = x;\
+	(PAD_CONFIG->PAD_CFG_PUPD(Port)) = x;\
 }
 
 // Макро для установки режимов работы (GPIO, Func) 
 #define	PAD_MODE(Port, Pin, Mode) {\
-	uint32_t x = (PAD_CONFIG->PAD_CFG_MODE(Port, Pin));\
-	x &= (0b11 << (2 * Pin));\
+	uint32_t x = (PAD_CONFIG->PAD_CFG_MODE(Port));\
+	x &= ~(0b11 << (2 * Pin));\
 	x |= (Mode << (2 * Pin));\
-	(PAD_CONFIG->PAD_CFG_MODE(Port, Pin)) = x;\
+	(PAD_CONFIG->PAD_CFG_MODE(Port)) = x;\
 }
 
 // Макро для сброса режимов работы PAD-а в дефолтное состояние
 #define	PAD_MODE_CLEAR(Port, Pin) {\
-	uint32_t x = (PAD_CONFIG->PAD_CFG_MODE(Port, Pin));\
-	x &= (0b11 << (2 * Pin));\
-	(PAD_CONFIG->PAD_CFG_MODE(Port, Pin)) = x;\
+	uint32_t x = (PAD_CONFIG->PAD_CFG_MODE(Port));\
+	x &= ~(0b11 << (2 * Pin));\
+	(PAD_CONFIG->PAD_CFG_MODE(Port)) = x;\
 }
 
 // Макро для настройки PAD-а в режим GPIO input 
