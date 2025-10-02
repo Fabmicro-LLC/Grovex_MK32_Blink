@@ -13,12 +13,18 @@
 #define	LED_GRN_PIN		5
 
 
-// SW1_ADDR[0-3] - P1.12 - P1.15.
+// SW1[3-6] = MCU_ADDR[3-0] - P1.15 - P1.12.
 // Входной дискретный GPIO с внутренней подтяжкой вверх.
-#define	SW1_ADDRx_PORT		1
-#define SW1_ADDR0_PIN		12
-#define SW1_ADDR1_PIN		13
-#define SW1_ADDR2_PIN		14
-#define SW1_ADDR3_PIN		15
+#define	MCU_ADDRx_PORT		1
+#define MCU_ADDR0_PIN		12
+#define MCU_ADDR1_PIN		13
+#define MCU_ADDR2_PIN		14
+#define MCU_ADDR3_PIN		15
 
+// SW1[1-2] = MCU_BAUB[1-0] - P1.7 - P0.8.
+// Входной дискретный GPIO с внутренней подтяжкой вверх.
+#define	MCU_BAUD1_PORT		1
+#define	MCU_BAUD0_PORT		0
+#define MCU_BAUD1_PIN		7	
+#define MCU_BAUD0_PIN		8	
 
