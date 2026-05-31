@@ -21,7 +21,7 @@ void ledBlink(void)
 void ledButton(void)
 {
 	// Проверка состояния состояния кнопки 
-	if (GPIO_STATE(SW1_ADDRx_PORT, SW1_ADDR0_PIN)) {
+	if (GPIO_STATE(MCU_ADDRx_PORT, MCU_ADDR0_PIN)) {
 		GPIO_SET(LED_RED_PORT, LED_RED_PIN);
 	} else {
 		GPIO_CLEAR(LED_RED_PORT, LED_RED_PIN);
