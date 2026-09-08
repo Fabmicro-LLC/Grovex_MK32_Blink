@@ -27,7 +27,7 @@ STRIP = $(CROSS)strip
 OBJCOPY = $(CROSS)objcopy
 OBJDUMP = $(CROSS)objdump
 
-MARCH = rv32imc
+MARCH = rv32imac_zicsr
 MABI = ilp32
 
 #
@@ -49,7 +49,7 @@ INC += -I $(HAL_DIR)/utilities/Include
 
 OBJDIR = $(PROJECT_BUILD_DIR)
 
-CFLAGS +=  -Os -MD -fstrict-volatile-bitfields -fno-strict-aliasing -march=$(MARCH) -mabi=$(MABI) -fno-common -fno-builtin-printf -DBUILD_NUMBER=$(BUILD_NUMBER)+1  -fno-common -flto 
+CFLAGS +=  -O3 -MD -fstrict-volatile-bitfields -fno-strict-aliasing -march=$(MARCH) -mabi=$(MABI) -fno-common -fno-builtin-printf -DBUILD_NUMBER=$(BUILD_NUMBER)+1  -fno-common -flto 
 
 LDFLAGS +=  -nostdlib -lgcc -mcmodel=medlow -nostartfiles -ffreestanding -Wl,-Bstatic,-T,$(LDSCRIPT),-Map,$(OBJDIR)/$(PROJECT_NAME).map,--print-memory-usage -march=$(MARCH) -mabi=$(MABI) -L $(SHARED_DIR)/ldscripts/
 
