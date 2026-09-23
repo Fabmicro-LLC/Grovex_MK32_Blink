@@ -27,7 +27,8 @@ STRIP = $(CROSS)strip
 OBJCOPY = $(CROSS)objcopy
 OBJDUMP = $(CROSS)objdump
 
-MARCH = rv32imac_zicsr
+#MARCH = rv32imac_zicsr
+MARCH = rv32imac
 MABI = ilp32
 
 #
@@ -101,9 +102,13 @@ clean:
 
 
 
-upload: $(OBJDIR)/$(PROJECT_NAME).hex
-	python $(MIK32_UPLOADER_DIR)/mik32_upload.py --run-openocd --openocd-exec=`which openocd` --openocd-scripts $(MIK32_UPLOADER_DIR)/openocd-scripts --openocd-interface interface/ftdi/mikron-link.cfg $(OBJDIR)/$(PROJECT_NAME).hex 
+upload: upload1
 
+upload0: $(OBJDIR)/$(PROJECT_NAME).hex
+	python $(MIK32_UPLOADER_DIR)/mik32_upload.py --run-openocd --openocd-exec=`which openocd` --openocd-scripts $(MIK32_UPLOADER_DIR)/openocd-scripts --openocd-interface ft2232d-link-ch0.cfg $(OBJDIR)/$(PROJECT_NAME).hex 
+
+upload1: $(OBJDIR)/$(PROJECT_NAME).hex
+	python $(MIK32_UPLOADER_DIR)/mik32_upload.py --run-openocd --openocd-exec=`which openocd` --openocd-scripts $(MIK32_UPLOADER_DIR)/openocd-scripts --openocd-interface ft2232d-link-ch1.cfg $(OBJDIR)/$(PROJECT_NAME).hex 
 
 term:
 	sudo minicom -D /dev/ttyU*0 -b 115200
